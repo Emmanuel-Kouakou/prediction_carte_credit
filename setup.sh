@@ -1,11 +1,12 @@
 mkdir -p ~/.streamlit/
 
 echo "\
-primaryColor = '#E694FF'
-backgroundColor = '#00172B'
-secondaryBackgroundColor = '#0083B8'
-textColor = '#DCDCDC'
-font = 'sans-serif'
+primaryColor = '#E694FF'\n\
+backgroundColor = '#00172B'\n\
+secondaryBackgroundColor = '#0083B8'\n\
+textColor = '#DCDCDC'\n\
+font = 'sans-serif'\n\
+\n\
 [server]\n\
 headless = true\n\
 port = $PORT\n\
