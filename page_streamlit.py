@@ -3,8 +3,33 @@ import numpy as np
 import streamlit as st
 import pandas as pd
 from pickle import load
-from st_aggrid import AgGrid, GridOptionsBuilder, DataReturnMode, GridUpdateMode
+from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
 import sqlite3
+
+
+#Utiles
+import base64
+import time
+
+timestr = time.strftime("%Y%m%d-%H%M%S")
+
+## Télécharger text
+def telecharge_text(text):
+    b64 = base64.b64encode(text.encode()).decode()
+    nom_new_fichier = "nouveau_fichier_text_{}_.txt".format(timestr)
+    st.markdown("### Téléchager le fichier ###")
+    href = f'<a href="data:file/txt;base64,{b64}" download="{nom_new_fichier}">Cliquer ici !! </a>'
+    st.markdown(href, unsafe_allow_html=True)
+
+ ## Télécharger CSV
+def telecharge_csv(data):
+    fichier_csv = data.to_csv()
+    b64 = base64.b64encode(fichier_csv.encode()).decode()
+    fichier_telecharge = "prediction_client_{}_.csv".format(timestr)
+    st.markdown("### Téléchager le fichier en format csv ###")
+    href = f'<a href="data:file/csv;base64,{b64}" download="{fichier_telecharge}"> Cliquer ici !! </a>'
+    st.markdown(href, unsafe_allow_html=True)
+
 
 # Chargement du modèle
 model = load(open('model.pkl', 'rb'))
@@ -114,8 +139,7 @@ def read_predict(df):
             AgGrid(de)
 
 
-
-
+            #telecharge_csv(de)
 
 
 
@@ -201,12 +225,6 @@ def main():
 
                X=np.array(X).reshape(1,-1)
 
-
-
-
-
-
-
                ypred = model.predict(X)
                #st.write(ypred)
 
@@ -284,6 +302,8 @@ def main():
    ### ACCUEIL
 
     else:
+
+        st.image(image='images/predict_card2.jpg')
 
         st.subheader("CONTEXTE")
 
