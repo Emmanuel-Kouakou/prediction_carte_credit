@@ -74,9 +74,10 @@ def edit_dataframe(data):
                            enable_enterprise_modules='Enable Enterprise Modules'
                            )
 
-    ## Les valeurs sélectionnées de mon Dataframe
+
     df = grid_response['data']
 
+    ## Les valeurs sélectionnées de mon Dataframe
     selected = grid_response['selected_rows']
     selected_df = pd.DataFrame(selected)
 
@@ -108,6 +109,8 @@ def read_predict(df):
     if all(liste_bool) == False:
         st.warning("Opération impossible, le fichier que vous avez chargé ne contient pas des colonnes adéquats pour la prédiction.")
     else:
+        st.success("Opération réussie, Chargement du fichier...")
+
         data = data[colonne_selectionne]
 
         dt, selected, selected_df = edit_dataframe(data)
