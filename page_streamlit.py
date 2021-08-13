@@ -139,11 +139,14 @@ def read_predict(df):
             AgGrid(de)
 
 
-            #telecharge_csv(de)
+            telecharge_csv(de)
 
 
 
 def main():
+    #html_temp = """<div style = "background-color:blue;padding:10px"><h2 style = "color:white;text-align:center;"> CHURN PREDICTION </h2></div>"""
+    #st.markdown(html_temp, unsafe_allow_html=True)
+
     st.title("Prédiction des départs de clients du service carte de credit")
 
     st.sidebar.write("Menu")
@@ -240,9 +243,6 @@ def main():
             de=pd.concat([result_al_df, pd.DataFrame(liste_pred, columns=["Predictions"])], axis=1)
             AgGrid(de)
 
-
-
-
         # with col2:
         #     res = st.button('predire')
         #     ls=[]
@@ -265,8 +265,6 @@ def main():
         #         ls.clear()
         #
         #         st.write(ls)
-
-
 
 
    ### CHARGER FICHIER
